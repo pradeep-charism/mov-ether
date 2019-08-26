@@ -3,13 +3,13 @@ App = {
   contracts: {},
 
   init: async function () {
-  $.getJSON('../products/mobile-items.json', function (data) {
+  $.getJSON('../products/movie-items.json', function (data) {
         var shopsRow = $('#shopsRow');
         var shopTemplate = $('#shopTemplate');
 
         for (let i = 0; i < data.length; i++) {
           shopTemplate.find('.panel-title').text(data[i].name);
-          shopTemplate.find('img').attr('src', data[i].picture);
+          shopTemplate.find('iframe').attr('src', data[i].picture);
           shopTemplate.find('.shop-desc').text(data[i].desc);
           shopTemplate.find('.shop-cost').text(data[i].cost);
           shopTemplate.find('.shop-location').text(data[i].location);
