@@ -81,7 +81,8 @@ App = {
         }).then(function (result) {
           return App.markSold();
         }).catch(function (err) {
-          console.log(err.message);
+            alert(err.message);
+            console.log(err.message);
         });
       });
     },
@@ -101,6 +102,7 @@ App = {
           }
         }
       }).catch(function (err) {
+        alert(err.message);
         console.log(err.message);
       });
     },
@@ -123,7 +125,8 @@ App = {
         }).then(function (result) {
           return App.markAvailable();
         }).catch(function (err) {
-          console.log(err.message);
+            alert(err.message);
+            console.log(err.message);
         });
       });
     },

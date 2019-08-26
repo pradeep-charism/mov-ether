@@ -39,6 +39,7 @@ contract EMartCoinContract is CoinInterface, Owned {
     );
 
     function buyProduct(uint productId) public payable returns (uint) {
+        require(msg.value != 0);
         require(productId >= 0 && productId <= 15);
         products[productId] = msg.sender;
         emit BuyEvent(msg.sender, productId);
@@ -46,6 +47,7 @@ contract EMartCoinContract is CoinInterface, Owned {
     }
 
     function sellProduct(uint productId) public payable returns (uint) {
+        require(address(this).balance != 0, 'No Ether available in store to refund.');
         require(productId >= 0 && productId <= 15);
         delete products[productId];
         msg.sender.transfer(1 ether);
@@ -58,16 +60,19 @@ contract EMartCoinContract is CoinInterface, Owned {
     }
 
     function buy(uint tokens) public payable returns (bool success) {
+        require(tokens != 0, 'Enter non-zero tokens');
         _storage.buy(msg.sender, tokens);
         return true;
     }
 
     function sell(uint tokens) public payable returns (bool success) {
+        require(tokens != 0, 'Enter non-zero tokens');
         _storage.sell(msg.sender, tokens);
         return true;
     }
 
     function issueTokens(uint etherValue) public payable returns (bool success) {
+        require(etherValue != 0, 'Ether value cannot be 0');
         etherValue = etherValue/(10**18);
         _storage.depositCoin(msg.sender, _unitsToIssue*etherValue);
 //        address(this).transfer(msg.value);
@@ -75,6 +80,7 @@ contract EMartCoinContract is CoinInterface, Owned {
     }
 
     function redeemTokens(uint tokens) public payable returns (bool success) {
+        require(tokens != 0, 'Enter non-zero tokens');
         uint etherValue = tokens/(_unitsToIssue);
         _storage.withdrawCoin(msg.sender, tokens);
         msg.sender.transfer(etherValue*(10**18));
@@ -86,6 +92,7 @@ contract EMartCoinContract is CoinInterface, Owned {
     }
 
     function transfer(address to, uint tokens) public returns (bool success) {
+        require(to != address(0), 'Invalid address to transfer');
         _storage.transfer(msg.sender, to, tokens);
         emit Transfer(msg.sender, to, tokens);
         return true;
