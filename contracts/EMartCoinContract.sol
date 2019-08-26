@@ -15,7 +15,7 @@ contract EMartCoinContract is CoinInterface, Owned {
 
     address[16] public products;
     address payable private _buyerWallet;
-
+    bool isStopped = false;
 
     constructor(address payable wallet) public payable {
         require(wallet != address(0), "wallet is the zero address");
@@ -28,6 +28,29 @@ contract EMartCoinContract is CoinInterface, Owned {
         _storage = new EternalCoinStorage();
     }
 
+    modifier stoppedInEmergency {
+        require(!isStopped, 'Contract paused by Admin');
+        _;
+    }
+
+    modifier onlyWhenStopped {
+        require(isStopped);
+        _;
+    }
+
+    modifier onlyAuthorized {
+        // Check for authorization of msg.sender here
+        _;
+    }
+
+    function stopContract() public onlyAuthorized {
+        isStopped = true;
+    }
+
+    function resumeContract() public onlyAuthorized {
+        isStopped = false;
+    }
+
     event BuyEvent(
         address indexed _from,
         uint indexed _id
@@ -38,7 +61,7 @@ contract EMartCoinContract is CoinInterface, Owned {
         uint indexed _id
     );
 
-    function buyProduct(uint productId) public payable returns (uint) {
+    function buyProduct(uint productId) public payable stoppedInEmergency returns (uint) {
         require(msg.value != 0);
         require(productId >= 0 && productId <= 15);
         products[productId] = msg.sender;
@@ -46,7 +69,7 @@ contract EMartCoinContract is CoinInterface, Owned {
         return productId;
     }
 
-    function sellProduct(uint productId) public payable returns (uint) {
+    function sellProduct(uint productId) public payable stoppedInEmergency returns (uint) {
         require(address(this).balance != 0, 'No Ether available in store to refund.');
         require(productId >= 0 && productId <= 15);
         delete products[productId];
@@ -71,7 +94,7 @@ contract EMartCoinContract is CoinInterface, Owned {
         return true;
     }
 
-    function issueTokens(uint etherValue) public payable returns (bool success) {
+    function issueTokens(uint etherValue) public payable stoppedInEmergency returns (bool success) {
         require(etherValue != 0, 'Ether value cannot be 0');
         etherValue = etherValue/(10**18);
         _storage.depositCoin(msg.sender, _unitsToIssue*etherValue);
@@ -79,7 +102,7 @@ contract EMartCoinContract is CoinInterface, Owned {
 //        _adminWallet.transfer(msg.value);
     }
 
-    function redeemTokens(uint tokens) public payable returns (bool success) {
+    function redeemTokens(uint tokens) public payable stoppedInEmergency returns (bool success) {
         require(tokens != 0, 'Enter non-zero tokens');
         uint etherValue = tokens/(_unitsToIssue);
         _storage.withdrawCoin(msg.sender, tokens);
@@ -91,7 +114,7 @@ contract EMartCoinContract is CoinInterface, Owned {
         return _storage.balanceOf(tokenOwner);
     }
 
-    function transfer(address to, uint tokens) public returns (bool success) {
+    function transfer(address to, uint tokens) public stoppedInEmergency returns (bool success) {
         require(to != address(0), 'Invalid address to transfer');
         _storage.transfer(msg.sender, to, tokens);
         emit Transfer(msg.sender, to, tokens);
