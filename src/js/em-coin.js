@@ -12,7 +12,8 @@ App = {
           shopTemplate.find('iframe').attr('src', data[i].picture);
           shopTemplate.find('.shop-desc').text(data[i].desc);
           shopTemplate.find('.shop-cost').text(data[i].cost);
-          shopTemplate.find('.shop-location').text(data[i].location);
+          shopTemplate.find('.shop-location').attr('href', data[i].picture);
+//          shopTemplate.find('.shop-location').text(data[i].location);
           shopTemplate.find('.btn-adopt').attr('data-id', data[i].id);
           shopTemplate.find('.btn-release').attr('data-id', data[i].id).attr('disabled', true);
 
