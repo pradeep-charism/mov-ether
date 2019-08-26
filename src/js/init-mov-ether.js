@@ -15,6 +15,7 @@ App = {
           shopTemplate.find('.shop-location').attr('href', data[i].picture);
           shopTemplate.find('.btn-adopt').attr('data-id', data[i].id);
           shopTemplate.find('.btn-release').attr('data-id', data[i].id).attr('disabled', true);
+          shopTemplate.find('.btn-watch-movie').attr('href', data[i].picture).attr('disabled', true).hide();
 
 
           shopsRow.append(shopTemplate.html());
@@ -49,10 +50,11 @@ App = {
         buyInstance = instance;
         return buyInstance.getProducts.call();
       }).then(function (products) {
-        for (i = 0; i < products.length; i++) {
+        for (let i = 0; i < products.length; i++) {
           if (products[i] !== '0x0000000000000000000000000000000000000000') {
             $('.panel-shop').eq(i).find('.btn-adopt').text('Buy').attr('disabled', true);
             $('.panel-shop').eq(i).find('.btn-release').text('Sell').attr('disabled', false);
+            $('.panel-shop').eq(i).find('.btn-watch-movie').attr('disabled', false).show();
           }
         }
       }).catch(function (err) {
@@ -95,6 +97,7 @@ App = {
           if (products[i] === '0x0000000000000000000000000000000000000000') {
             $('.panel-shop').eq(i).find('.btn-adopt').text('Buy').attr('disabled', false);
             $('.panel-shop').eq(i).find('.btn-release').text('Sell').attr('disabled', true);
+            $('.panel-shop').eq(i).find('.btn-watch-movie').attr('disabled', true).hide();
           }
         }
       }).catch(function (err) {
