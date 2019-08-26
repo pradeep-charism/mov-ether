@@ -1,4 +1,5 @@
-# ether-mart
+# Mov-Ether
+Online blockchain movie theatre
 
 npm init
 truffle init
