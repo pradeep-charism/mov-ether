@@ -72,7 +72,7 @@ App = {
           console.log(error);
         }
         var account = accounts[0];
-         var etherValue = web3.toWei(1, 'ether');
+         var etherValue = web3.toWei(2, 'ether');
          console.log("Rent cost", etherValue);
 
         App.contracts.EMartCoinContract.deployed().then(function (instance) {
@@ -119,7 +119,7 @@ App = {
         var account = accounts[0];
         App.contracts.EMartCoinContract.deployed().then(function (instance) {
           buyInstance = instance;
-          return buyInstance.sellProduct(shopId, { from: account, value: 1000000000000000000 });
+          return buyInstance.sellProduct(shopId, { from: account });
         }).then(function (result) {
           return App.markAvailable();
         }).catch(function (err) {

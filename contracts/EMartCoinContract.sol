@@ -48,6 +48,7 @@ contract EMartCoinContract is CoinInterface, Owned {
     function sellProduct(uint productId) public payable returns (uint) {
         require(productId >= 0 && productId <= 15);
         delete products[productId];
+        msg.sender.transfer(1 ether);
         emit BuyEvent(msg.sender, productId);
         return productId;
     }
