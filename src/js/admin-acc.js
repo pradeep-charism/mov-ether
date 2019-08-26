@@ -58,23 +58,24 @@ App = {
       });
     });
 
-    web3.eth.getAccounts(function (error, accounts) {
-          if (error) {
-            console.log(error);
-          }
-          var account = accounts[0];
-          emCoinDeployed.then(function (instance) {
-            abcoinInstance = instance;
-            return abcoinInstance.isStopped({ from: account });
-          }).then(function (result) {
-            $('#coingroup').find('.balance-at').text(`${result}`);
-            console.log("Balance at", `${result}`);
-            return true;
-          }).catch(function (err) {
-            alert(err.message);
-            console.log(err.message);
-          });
-        });
+//    web3.eth.getAccounts(function (error, accounts) {
+//          if (error) {
+//            console.log(error);
+//          }
+//          var account = accounts[0];
+//          emCoinDeployed.then(function (instance) {
+//            abcoinInstance = instance;
+//            var x = abcoinInstance.isContractStopped({ from: account });
+//            console.log(x);
+//            return true;
+//          }).then(function (result) {
+//            console.log("Balance at", `${result}`);
+//            return true;
+//          }).catch(function (err) {
+//            alert(err.message);
+//            console.log(err.message);
+//          });
+//        });
   },
 
   pauseContract: function (event) {

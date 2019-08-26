@@ -43,6 +43,10 @@ contract EMartCoinContract is CoinInterface, Owned {
         _;
     }
 
+    function isContractStopped() external returns (bool result){
+        return isStopped;
+    }
+
     function stopContract() public onlyAuthorized {
         isStopped = true;
     }
