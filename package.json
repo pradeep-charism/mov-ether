@@ -1,0 +1,26 @@
+{
+  "name": "ether-mart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pradeep-charism/ether-mart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/pradeep-charism/ether-mart/issues"
+  },
+  "homepage": "https://github.com/pradeep-charism/ether-mart#readme"
+}

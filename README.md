@@ -1,2 +1,6 @@
-# mov-ether
-Online Movie Theatre - Build on blockchain
+# ether-mart
+
+npm init
+truffle init
+npm install
+npm run dev
