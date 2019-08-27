@@ -62,11 +62,11 @@ contract MovEtherEternalStorage {
         return true;
     }
 
-    function buy(address from, uint tokens) public returns (bool success) {
+    function buy(address from, uint tokens) external returns (bool success) {
         transfer(from, _adminWallet, tokens);
     }
 
-    function sell(address to, uint tokens) public returns (bool success) {
+    function sell(address to, uint tokens) external returns (bool success) {
         transfer(_adminWallet, to, tokens);
     }
 
@@ -85,7 +85,7 @@ contract MovEtherEternalStorage {
         return true;
     }
 
-    function getAllTokenHolders() public view returns (address[] memory, uint[] memory){
+    function getAllTokenHolders() external view returns (address[] memory, uint[] memory){
         address[] memory holders = new address[](tokenHolders.length);
         uint[]    memory units = new uint[](tokenHolders.length);
         for (uint i = 0; i < tokenHolders.length; i++) {
@@ -96,7 +96,7 @@ contract MovEtherEternalStorage {
         return (holders, units);
     }
 
-    function balanceOf(address tokenOwner) public view returns (uint balance) {
+    function balanceOf(address tokenOwner) external view returns (uint balance) {
         return tokensLedger[tokenOwner].units;
     }
 
