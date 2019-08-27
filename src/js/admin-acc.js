@@ -44,7 +44,6 @@ App = {
       var balance = web3.fromWei(balanceWei, 'ether');
       $('#etherBalanceGroup').find('.ether-balance').text(`${balance}`);
       console.log("etherBalance", balance);
-
       emCoinDeployed.then(function (instance) {
         abcoinInstance = instance;
         return abcoinInstance.balanceOf(account, { from: account });
@@ -57,6 +56,30 @@ App = {
         console.log(err.message);
       });
     });
+
+    web3.eth.getAccounts(function (error, accounts) {
+          if (error) {
+            console.log(error);
+          }
+          var account = accounts[0];
+          emCoinDeployed.then(function (instance) {
+            abcoinInstance = instance;
+            return abcoinInstance.isContractStopped({ from: account });
+          }).then(function (result) {
+            console.log('Is contract stopped', `${result}`);
+            if(`${result}` == 1){
+                $('#adminBtnGroup').find('.btn-pause').text('Pause').attr('disabled', true);
+                $('#adminBtnGroup').find('.btn-resume').text('Resume').attr('disabled', false);
+            }else{
+                $('#adminBtnGroup').find('.btn-pause').text('Pause').attr('disabled', false);
+                $('#adminBtnGroup').find('.btn-resume').text('Resume').attr('disabled', true);
+            }
+            return true;
+          }).catch(function (err) {
+            alert(err.message);
+            console.log(err.message);
+          });
+        });
   },
 
   pauseContract: function (event) {

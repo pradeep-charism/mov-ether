@@ -11,11 +11,26 @@ contract EternalCoinStorage{
     }
     mapping(address => Token) tokensLedger;
     address[] tokenHolders;
+    address[16] public products;
     address payable private _adminWallet;
 
     constructor() public payable{
         _adminWallet = msg.sender;
         depositCoin(msg.sender, 0);
+    }
+
+    function store(uint productId, address buyer) external returns (bool){
+        products[productId] = buyer;
+        return true;
+    }
+
+    function unStore(uint productId) external returns (bool){
+        delete products[productId];
+        return true;
+    }
+
+    function getAllProducts() external view returns (address[16]memory) {
+        return products;
     }
 
     function depositCoin(address sender, uint tokens) public returns (bool success) {

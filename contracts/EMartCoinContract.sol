@@ -13,7 +13,6 @@ contract EMartCoinContract is CoinInterface, Owned {
     uint _unitsToIssue;
     EternalCoinStorage _storage;
 
-    address[16] public products;
     address payable private _buyerWallet;
     bool isStopped = false;
 
@@ -43,8 +42,8 @@ contract EMartCoinContract is CoinInterface, Owned {
         _;
     }
 
-    function isContractStopped() external returns (bool result){
-        return isStopped;
+    function isContractStopped() external view returns (uint){
+        return isStopped == true ? 1 : 0;
     }
 
     function stopContract() public onlyAuthorized {
@@ -68,7 +67,7 @@ contract EMartCoinContract is CoinInterface, Owned {
     function buyProduct(uint productId) public payable stoppedInEmergency returns (uint) {
         require(msg.value != 0);
         require(productId >= 0 && productId <= 15);
-        products[productId] = msg.sender;
+       _storage.store(productId, msg.sender);
         emit BuyEvent(msg.sender, productId);
         return productId;
     }
@@ -76,14 +75,14 @@ contract EMartCoinContract is CoinInterface, Owned {
     function sellProduct(uint productId) public payable stoppedInEmergency returns (uint) {
         require(address(this).balance != 0, 'No Ether available in store to refund.');
         require(productId >= 0 && productId <= 15);
-        delete products[productId];
+        _storage.unStore(productId);
         msg.sender.transfer(1 ether);
         emit BuyEvent(msg.sender, productId);
         return productId;
     }
 
     function getProducts() public view returns (address[16]memory) {
-        return products;
+        return _storage.getAllProducts();
     }
 
     function buy(uint tokens) public payable returns (bool success) {
