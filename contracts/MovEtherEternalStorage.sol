@@ -14,8 +14,8 @@ contract MovEtherEternalStorage {
     address[16] public products;
     address payable private _adminWallet;
 
-    constructor() public payable{
-        _adminWallet = msg.sender;
+    constructor(address payable wallet) public payable{
+        _adminWallet = wallet;
         depositCoin(msg.sender, 0);
     }
 

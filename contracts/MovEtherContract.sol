@@ -13,18 +13,16 @@ contract MovEtherContract is CoinInterface, Owned {
     uint _unitsToIssue;
     MovEtherEternalStorage _storage;
 
-    address payable private _buyerWallet;
     bool isStopped = false;
 
     constructor(address payable wallet) public payable {
         require(wallet != address(0), "wallet is the zero address");
-        _buyerWallet = wallet;
 
         symbol = "EMT";
         name = "Ether Mart Coins";
         decimals = 3;
         _unitsToIssue = 10 * 10**uint(decimals);
-        _storage = new MovEtherEternalStorage();
+        _storage = new MovEtherEternalStorage(wallet);
     }
 
     modifier stoppedInEmergency {
