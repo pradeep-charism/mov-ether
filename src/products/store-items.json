@@ -1,0 +1,130 @@
+[
+  {
+    "id": 0,
+    "name": "Captain Lion",
+    "picture": "images/store/lionking.jpg",
+    "cost": 3,
+    "desc": "Captain Lion",
+    "location": "Lisco, Alabama"
+  },
+  {
+    "id": 1,
+    "name": "Lion king toy",
+    "picture": "images/store/lionking.jpg",
+    "cost": 3,
+    "desc": "Lion king toy",
+    "location": "Tooleville, West Virginia"
+  },
+  {
+    "id": 2,
+    "name": "Smart OLED TV",
+    "picture": "images/store/tv.jpg",
+    "cost": 2,
+    "desc": "Smart OLED TV",
+    "location": "Freeburn, Idaho"
+  },
+  {
+    "id": 3,
+    "name": "Captain Pendant",
+    "picture": "images/store/shield.jpg",
+    "cost": 2,
+    "desc": "Captain Pendant",
+    "location": "Camas, Pennsylvania"
+  },
+  {
+    "id": 4,
+    "name": "Star wars toys",
+    "picture": "images/store/starwars.jpg",
+    "cost": 3,
+    "desc": "Star wars toys",
+    "location": "Lisco, Alabama"
+  },
+  {
+    "id": 5,
+    "name": "Lion king toy",
+    "picture": "images/store/lionking.jpg",
+    "cost": 3,
+    "desc": "Lion king toy",
+    "location": "Tooleville, West Virginia"
+  },
+  {
+    "id": 6,
+    "name": "Marvel toys",
+    "picture": "images/store/marvel_toys.jpg",
+    "cost": 2,
+    "desc": "Marvel toys",
+    "location": "Freeburn, Idaho"
+  },
+  {
+    "id": 7,
+    "name": "DVD Player",
+    "picture": "images/store/dvd.jpg",
+    "cost": 2,
+    "desc": "DVD Player",
+    "location": "Camas, Pennsylvania"
+  },
+  {
+    "id": 8,
+    "name": "Captain Lion",
+    "picture": "images/store/lionking.jpg",
+    "cost": 3,
+    "desc": "Captain Lion",
+    "location": "Lisco, Alabama"
+  },
+  {
+    "id": 9,
+    "name": "Lion king toy",
+    "picture": "images/store/lionking.jpg",
+    "cost": 3,
+    "desc": "Lion king toy",
+    "location": "Tooleville, West Virginia"
+  },
+  {
+    "id": 10,
+    "name": "Marvel toys",
+    "picture": "images/store/marvel_toys.jpg",
+    "cost": 2,
+    "desc": "Marvel toys",
+    "location": "Freeburn, Idaho"
+  },
+  {
+    "id": 11,
+    "name": "Captain Pendant",
+    "picture": "images/store/shield.jpg",
+    "cost": 2,
+    "desc": "Captain Pendant",
+    "location": "Camas, Pennsylvania"
+  },
+  {
+    "id": 12,
+    "name": "Captain Lion",
+    "picture": "images/store/lionking.jpg",
+    "cost": 3,
+    "desc": "Captain Lion",
+    "location": "Lisco, Alabama"
+  },
+  {
+    "id": 12,
+    "name": "Lion king toy",
+    "picture": "images/store/lionking.jpg",
+    "cost": 3,
+    "desc": "Lion king toy",
+    "location": "Tooleville, West Virginia"
+  },
+  {
+    "id": 14,
+    "name": "Marvel toys",
+    "picture": "images/store/marvel_toys.jpg",
+    "cost": 2,
+    "desc": "Marvel toys",
+    "location": "Freeburn, Idaho"
+  },
+  {
+    "id": 15,
+    "name": "Captain Pendant",
+    "picture": "images/store/shield.jpg",
+    "cost": 2,
+    "desc": "Captain Pendant",
+    "location": "Camas, Pennsylvania"
+  }
+]
