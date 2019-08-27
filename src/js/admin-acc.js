@@ -46,10 +46,10 @@ App = {
       console.log("etherBalance", balance);
       emCoinDeployed.then(function (instance) {
         abcoinInstance = instance;
-        return abcoinInstance.balanceOf(account, { from: account });
+        return abcoinInstance.adminCoinBalance({ from: account });
       }).then(function (result) {
-        $('#coingroup').find('.balance-at').text(`${result}`);
-        console.log("Balance at", `${result}`);
+        $('#coinBalanceGroup').find('.coin-balance').text(`${result}`);
+        console.log("Admin coin Balance:", `${result}`);
         return true;
       }).catch(function (err) {
         alert(err.message);

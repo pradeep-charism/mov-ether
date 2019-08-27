@@ -49,8 +49,6 @@ App = {
         }
         var account = accounts[0];
          var etherValue = 10000;
-         console.log("Rent cost", etherValue);
-
         App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
           return buyInstance.buy(etherValue, { from: account, data: etherValue });

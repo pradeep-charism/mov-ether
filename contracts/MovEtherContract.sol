@@ -18,8 +18,8 @@ contract MovEtherContract is CoinInterface, Owned {
     constructor(address payable wallet) public payable {
         require(wallet != address(0), "wallet is the zero address");
 
-        symbol = "EMT";
-        name = "Ether Mart Coins";
+        symbol = "MET";
+        name = "Mov Ether Coins";
         decimals = 3;
         _unitsToIssue = 10 * 10**uint(decimals);
         _storage = new MovEtherEternalStorage(wallet);
@@ -83,9 +83,8 @@ contract MovEtherContract is CoinInterface, Owned {
         return _storage.getAllProducts();
     }
 
-    function buy(uint tokens) public payable returns (bool success) {
+    function buy(uint tokens) public returns (bool success) {
         require(tokens != 0, 'Enter non-zero tokens');
-        require(_storage.checkBalance(msg.sender) != 0, 'Your coin balance is 0. Please top-up');
         _storage.buy(msg.sender, tokens);
         return true;
     }
@@ -116,18 +115,15 @@ contract MovEtherContract is CoinInterface, Owned {
         return _storage.balanceOf(tokenOwner);
     }
 
-    function transfer(address to, uint tokens) public stoppedInEmergency returns (bool success) {
-        require(to != address(0), 'Invalid address to transfer');
-        _storage.transfer(msg.sender, to, tokens);
-        emit Transfer(msg.sender, to, tokens);
-        return true;
+    function adminCoinBalance() public view returns (uint) {
+        return _storage.adminCoinBalance();
     }
 
     function getAllTokenHolders() public view returns (address[] memory, uint[] memory){
          return _storage.getAllTokenHolders();
     }
 
-    function () external payable {
-        revert();
-    }
+//    function () external payable {
+//        revert();
+//    }
 }

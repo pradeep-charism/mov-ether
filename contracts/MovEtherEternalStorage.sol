@@ -42,11 +42,12 @@ contract MovEtherEternalStorage {
         if(tokensLedger[sender].holder == 0x0000000000000000000000000000000000000000){
             tokenHolders.push(sender);
         }
-        return success;
+        return true;
     }
 
-    function withdrawCoin(address sender, uint tokens) public payable returns (bool success) {
+    function withdrawCoin(address sender, uint tokens) public returns (bool) {
         Token memory newToken = tokensLedger[sender];
+        require(newToken.units != 0, 'No coin balance at the senders account');
         delete tokensLedger[sender];
         newToken.holder = sender;
         newToken.units = newToken.units.sub(tokens);
@@ -62,31 +63,13 @@ contract MovEtherEternalStorage {
         return true;
     }
 
-    function buy(address from, uint tokens) external returns (bool success) {
-        transfer(from, _adminWallet, tokens);
+    function buy(address from, uint tokens) public returns (bool) {
+        withdrawCoin(from, tokens);
+        return true;
     }
 
-    function checkBalance(address from) external returns (uint){
-        Token memory newToken = tokensLedger[from];
-        return newToken.units;
-    }
-
-    function sell(address to, uint tokens) external returns (bool success) {
-        transfer(_adminWallet, to, tokens);
-    }
-
-    function transfer(address from, address to, uint tokens) public returns (bool success) {
-        Token memory newToken = tokensLedger[from];
-        newToken.units = newToken.units.sub(tokens);
-        tokensLedger[from] = newToken;
-
-        if(tokensLedger[to].holder == 0x0000000000000000000000000000000000000000){
-            tokenHolders.push(to);
-        }
-        Token memory  token = tokensLedger[to];
-        token.holder = to;
-        token.units = token.units.add(tokens);
-        tokensLedger[to] = token;
+    function sell(address to, uint tokens) external returns (bool) {
+        depositCoin(to, tokens);
         return true;
     }
 
@@ -103,6 +86,10 @@ contract MovEtherEternalStorage {
 
     function balanceOf(address tokenOwner) external view returns (uint balance) {
         return tokensLedger[tokenOwner].units;
+    }
+
+    function adminCoinBalance() external view returns (uint) {
+        return tokensLedger[_adminWallet].units;
     }
 
 }
