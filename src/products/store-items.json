@@ -1,58 +1,58 @@
 [
   {
     "id": 0,
-    "name": "Captain Lion",
-    "picture": "images/store/lionking.jpg",
+    "name": "Super Hero toys",
+    "picture": "images/store/super_heros.jpg",
     "cost": 3,
-    "desc": "Captain Lion",
+    "desc": "Super Hero toys",
     "location": "Lisco, Alabama"
   },
   {
     "id": 1,
-    "name": "Lion king toy",
-    "picture": "images/store/lionking.jpg",
+    "name": "Spiderman toys",
+    "picture": "images/store/spiderman.jpg",
     "cost": 3,
-    "desc": "Lion king toy",
+    "desc": "Spiderman toys",
     "location": "Tooleville, West Virginia"
   },
   {
     "id": 2,
-    "name": "Smart OLED TV",
-    "picture": "images/store/tv.jpg",
+    "name": "Dory toys",
+    "picture": "images/store/dory.jpg",
     "cost": 2,
-    "desc": "Smart OLED TV",
+    "desc": "Dory toys",
     "location": "Freeburn, Idaho"
   },
   {
     "id": 3,
-    "name": "Captain Pendant",
-    "picture": "images/store/shield.jpg",
+    "name": "Marvel Stickers",
+    "picture": "images/store/marvel_stickers.jpg",
     "cost": 2,
-    "desc": "Captain Pendant",
+    "desc": "Marvel Stickers",
     "location": "Camas, Pennsylvania"
   },
   {
     "id": 4,
-    "name": "Star wars toys",
-    "picture": "images/store/starwars.jpg",
+    "name": "Transformer toys",
+    "picture": "images/store/transformer.jpeg",
     "cost": 3,
-    "desc": "Star wars toys",
+    "desc": "Transformer toys",
     "location": "Lisco, Alabama"
   },
   {
     "id": 5,
-    "name": "Lion king toy",
-    "picture": "images/store/lionking.jpg",
+    "name": "Spiderman toys",
+    "picture": "images/store/spiderman.jpg",
     "cost": 3,
-    "desc": "Lion king toy",
+    "desc": "Spiderman toys",
     "location": "Tooleville, West Virginia"
   },
   {
     "id": 6,
-    "name": "Marvel toys",
-    "picture": "images/store/marvel_toys.jpg",
+    "name": "Ironman toys",
+    "picture": "images/store/ironman.jpg",
     "cost": 2,
-    "desc": "Marvel toys",
+    "desc": "Ironman toys",
     "location": "Freeburn, Idaho"
   },
   {
@@ -65,66 +65,66 @@
   },
   {
     "id": 8,
-    "name": "Captain Lion",
-    "picture": "images/store/lionking.jpg",
+    "name": "Super Hero toys",
+    "picture": "images/store/super_heros.jpg",
     "cost": 3,
-    "desc": "Captain Lion",
+    "desc": "Super Hero toys",
     "location": "Lisco, Alabama"
   },
   {
     "id": 9,
-    "name": "Lion king toy",
-    "picture": "images/store/lionking.jpg",
+    "name": "Spiderman toys",
+    "picture": "images/store/super_heros.jpg",
     "cost": 3,
-    "desc": "Lion king toy",
+    "desc": "Spiderman toys",
     "location": "Tooleville, West Virginia"
   },
   {
     "id": 10,
-    "name": "Marvel toys",
-    "picture": "images/store/marvel_toys.jpg",
+    "name": "Ironman toys",
+    "picture": "images/store/ironman.jpg",
     "cost": 2,
-    "desc": "Marvel toys",
+    "desc": "Ironman toys",
     "location": "Freeburn, Idaho"
   },
   {
     "id": 11,
-    "name": "Captain Pendant",
-    "picture": "images/store/shield.jpg",
+    "name": "Marvel Stickers",
+    "picture": "images/store/marvel_stickers.jpg",
     "cost": 2,
-    "desc": "Captain Pendant",
+    "desc": "Marvel Stickers",
     "location": "Camas, Pennsylvania"
   },
   {
     "id": 12,
-    "name": "Captain Lion",
-    "picture": "images/store/lionking.jpg",
+    "name": "Super Hero toys",
+    "picture": "images/store/super_heros.jpg",
     "cost": 3,
-    "desc": "Captain Lion",
+    "desc": "Super Hero toys",
     "location": "Lisco, Alabama"
   },
   {
     "id": 12,
-    "name": "Lion king toy",
-    "picture": "images/store/lionking.jpg",
+    "name": "Spiderman toys",
+    "picture": "images/store/spiderman.jpg",
     "cost": 3,
-    "desc": "Lion king toy",
+    "desc": "Spiderman toys",
     "location": "Tooleville, West Virginia"
   },
   {
     "id": 14,
-    "name": "Marvel toys",
-    "picture": "images/store/marvel_toys.jpg",
+    "name": "Ironman toys",
+    "picture": "images/store/ironman.jpg",
     "cost": 2,
-    "desc": "Marvel toys",
+    "desc": "Ironman toys",
     "location": "Freeburn, Idaho"
   },
   {
     "id": 15,
-    "name": "Captain Pendant",
-    "picture": "images/store/shield.jpg",
+    "name": "Marvel Stickers",
+    "picture": "images/store/marvel_stickers.jpg",
     "cost": 2,
-    "desc": "Captain Pendant",
+    "desc": "Marvel Stickers",
     "location": "Camas, Pennsylvania"
   }
 ]

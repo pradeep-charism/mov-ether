@@ -12,7 +12,6 @@ App = {
           shopTemplate.find('img').attr('src', data[i].picture);
           shopTemplate.find('.shop-desc').text(data[i].desc);
 //          shopTemplate.find('.shop-cost').text(data[i].cost);
-          shopTemplate.find('.shop-location').attr('href', data[i].picture);
           shopTemplate.find('.btn-adopt').attr('data-id', data[i].id);
           shopTemplate.find('.btn-release').attr('data-id', data[i].id).attr('disabled', true);
           shopTemplate.find('.btn-watch-movie').attr('href', data[i].picture).attr('disabled', true).hide();
