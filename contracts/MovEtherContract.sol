@@ -2,16 +2,16 @@ pragma solidity ^0.5.8;
 import "./SafeMath.sol";
 import "./CoinInterface.sol";
 import "./Owned.sol";
-import "./EternalCoinStorage.sol";
+import "./MovEtherEternalStorage.sol";
 
-contract EMartCoinContract is CoinInterface, Owned {
+contract MovEtherContract is CoinInterface, Owned {
     using SafeMath for uint;
 
     string public symbol;
     string public  name;
     uint8 public decimals;
     uint _unitsToIssue;
-    EternalCoinStorage _storage;
+    MovEtherEternalStorage _storage;
 
     address payable private _buyerWallet;
     bool isStopped = false;
@@ -24,7 +24,7 @@ contract EMartCoinContract is CoinInterface, Owned {
         name = "Ether Mart Coins";
         decimals = 3;
         _unitsToIssue = 10 * 10**uint(decimals);
-        _storage = new EternalCoinStorage();
+        _storage = new MovEtherEternalStorage();
     }
 
     modifier stoppedInEmergency {

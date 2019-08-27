@@ -33,10 +33,10 @@ App = {
 
   initContract: function () {
 
-    $.getJSON('EMartCoinContract.json', function (data) {
+    $.getJSON('MovEtherContract.json', function (data) {
       var ABCoinContractArtifact = data;
-      App.contracts.EMartCoinContract = TruffleContract(ABCoinContractArtifact);
-      App.contracts.EMartCoinContract.setProvider(App.web3Provider);
+      App.contracts.MovEtherContract = TruffleContract(ABCoinContractArtifact);
+      App.contracts.MovEtherContract.setProvider(App.web3Provider);
       return App.markSold();
     });
 
@@ -46,7 +46,7 @@ App = {
   markSold: function (products, account) {
 
       var buyInstance;
-      App.contracts.EMartCoinContract.deployed().then(function (instance) {
+      App.contracts.MovEtherContract.deployed().then(function (instance) {
         buyInstance = instance;
         return buyInstance.getProducts.call();
       }).then(function (products) {
@@ -75,7 +75,7 @@ App = {
          var etherValue = web3.toWei(2, 'ether');
          console.log("Rent cost", etherValue);
 
-        App.contracts.EMartCoinContract.deployed().then(function (instance) {
+        App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
           return buyInstance.buyProduct(shopId, { from: account, value: etherValue });
         }).then(function (result) {
@@ -90,7 +90,7 @@ App = {
     markAvailable: function (products, account) {
 
       var buyInstance;
-      App.contracts.EMartCoinContract.deployed().then(function (instance) {
+      App.contracts.MovEtherContract.deployed().then(function (instance) {
         buyInstance = instance;
         return buyInstance.getProducts.call();
       }).then(function (products) {
@@ -119,7 +119,7 @@ App = {
           console.log(error);
         }
         var account = accounts[0];
-        App.contracts.EMartCoinContract.deployed().then(function (instance) {
+        App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
           return buyInstance.sellProduct(shopId, { from: account });
         }).then(function (result) {

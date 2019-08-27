@@ -14,10 +14,10 @@ App = {
 
   initContract: function () {
 
-    $.getJSON('EMartCoinContract.json', function (data) {
+    $.getJSON('MovEtherContract.json', function (data) {
       var ABCoinContractArtifact = data;
-      App.contracts.EMartCoinContract = TruffleContract(ABCoinContractArtifact);
-      App.contracts.EMartCoinContract.setProvider(App.web3Provider);
+      App.contracts.MovEtherContract = TruffleContract(ABCoinContractArtifact);
+      App.contracts.MovEtherContract.setProvider(App.web3Provider);
       return App.loadOnStartup();
     });
 
@@ -32,7 +32,7 @@ App = {
 
   loadOnStartup: function (event) {
     var abcoinInstance;
-    const emCoinDeployed = App.contracts.EMartCoinContract.deployed();
+    const emCoinDeployed = App.contracts.MovEtherContract.deployed();
 
     web3.eth.getAccounts(function (error, accounts) {
       if (error) {
@@ -91,7 +91,7 @@ App = {
           console.log(error);
         }
         var account = accounts[0];
-        App.contracts.EMartCoinContract.deployed().then(function (instance) {
+        App.contracts.MovEtherContract.deployed().then(function (instance) {
           abcoinInstance = instance;
 
           return abcoinInstance.stopContract({ from: account });
@@ -117,7 +117,7 @@ App = {
           console.log(error);
         }
         var fromAccount = accounts[0];
-        App.contracts.EMartCoinContract.deployed().then(function (instance) {
+        App.contracts.MovEtherContract.deployed().then(function (instance) {
           abcoinInstance = instance;
           return abcoinInstance.resumeContract({ from: fromAccount});
         }).then(function (result) {

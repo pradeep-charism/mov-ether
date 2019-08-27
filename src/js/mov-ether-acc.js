@@ -14,10 +14,10 @@ App = {
 
   initContract: function () {
 
-    $.getJSON('EMartCoinContract.json', function (data) {
+    $.getJSON('MovEtherContract.json', function (data) {
       var ABCoinContractArtifact = data;
-      App.contracts.EMartCoinContract = TruffleContract(ABCoinContractArtifact);
-      App.contracts.EMartCoinContract.setProvider(App.web3Provider);
+      App.contracts.MovEtherContract = TruffleContract(ABCoinContractArtifact);
+      App.contracts.MovEtherContract.setProvider(App.web3Provider);
       return App.loadOnStartup();
     });
 
@@ -32,7 +32,7 @@ App = {
 
   loadOnStartup: function (event) {
     var abcoinInstance;
-    const emCoinDeployed = App.contracts.EMartCoinContract.deployed();
+    const emCoinDeployed = App.contracts.MovEtherContract.deployed();
 
     web3.eth.getAccounts(function (error, accounts) {
       if (error) {
@@ -72,7 +72,7 @@ App = {
         var etherValue = web3.toWei(value, 'ether');
         console.log("ether to buy tokens", etherValue);
 
-        App.contracts.EMartCoinContract.deployed().then(function (instance) {
+        App.contracts.MovEtherContract.deployed().then(function (instance) {
           abcoinInstance = instance;
 
           return abcoinInstance.issueTokens(etherValue, { from: account, value: etherValue });
@@ -97,7 +97,7 @@ App = {
         var fromAccount = accounts[0];
         console.log("From account: ", fromAccount);
         var coinValue = document.getElementById("sellCoins").value;
-        App.contracts.EMartCoinContract.deployed().then(function (instance) {
+        App.contracts.MovEtherContract.deployed().then(function (instance) {
           abcoinInstance = instance;
           return abcoinInstance.redeemTokens(coinValue, { from: fromAccount, value: coinValue, gas: 2100000});
         }).then(function (result) {
@@ -122,7 +122,7 @@ transferTokens: function (event) {
         var toAccount = accounts[1];
         console.log("From account: ", fromAccount);
         console.log("To account: ", toAccount);
-        App.contracts.EMartCoinContract.deployed().then(function (instance) {
+        App.contracts.MovEtherContract.deployed().then(function (instance) {
           abcoinInstance = instance;
           return abcoinInstance.transfer(toAccount, 100000, { from: fromAccount});
         }).then(function (result) {

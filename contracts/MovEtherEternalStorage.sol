@@ -2,7 +2,7 @@ pragma solidity ^0.5.8;
 
 import "./SafeMath.sol";
 
-contract EternalCoinStorage{
+contract MovEtherEternalStorage {
     using SafeMath for uint;
 
     struct Token {
