@@ -119,6 +119,10 @@ contract MovEtherContract is CoinInterface, Owned {
         return _storage.adminCoinBalance();
     }
 
+    function contractEtherBalance() public view returns (uint) {
+        return address(this).balance;
+    }
+
     function getAllTokenHolders() public view returns (address[] memory, uint[] memory){
          return _storage.getAllTokenHolders();
     }

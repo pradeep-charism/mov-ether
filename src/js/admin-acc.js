@@ -57,6 +57,27 @@ App = {
       });
     });
 
+web3.eth.getAccounts(function (error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+      var account = accounts[0];
+
+      var balanceWei = web3.eth.getBalance(accounts[2]);
+      emCoinDeployed.then(function (instance) {
+        abcoinInstance = instance;
+        return abcoinInstance.contractEtherBalance({ from: account });
+      }).then(function (result) {
+            var balance = web3.fromWei(`${result}`, 'ether')
+            $('#contractEtherBalanceGroup').find('.contract-ether-balance').text(balance);
+            console.log("Contract Ether Balance:", balance);
+        return true;
+      }).catch(function (err) {
+        alert(err.message);
+        console.log(err.message);
+      });
+    });
+
     web3.eth.getAccounts(function (error, accounts) {
           if (error) {
             console.log(error);
