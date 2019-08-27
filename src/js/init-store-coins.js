@@ -32,7 +32,7 @@ App = {
       var ABCoinContractArtifact = data;
       App.contracts.MovEtherContract = TruffleContract(ABCoinContractArtifact);
       App.contracts.MovEtherContract.setProvider(App.web3Provider);
-      return App.markSold();
+      return true;
     });
 
     return App.bindEvents();
@@ -67,12 +67,12 @@ App = {
           console.log(error);
         }
         var account = accounts[0];
-         var etherValue = web3.toWei(2, 'ether');
+         var etherValue = 10000;
          console.log("Rent cost", etherValue);
 
         App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
-          return buyInstance.buyProduct(shopId, { from: account, value: etherValue });
+          return buyInstance.rentMovie(shopId, { from: account, data: etherValue });
         }).then(function (result) {
           return App.markSold();
         }).catch(function (err) {
@@ -116,7 +116,7 @@ App = {
         var account = accounts[0];
         App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
-          return buyInstance.sellProduct(shopId, { from: account });
+          return buyInstance.returnMovie(shopId, { from: account });
         }).then(function (result) {
           return App.markAvailable();
         }).catch(function (err) {
@@ -128,7 +128,6 @@ App = {
 
   bindEvents: function () {
     $(document).on('click', '.btn-adopt', App.handleBuy);
-    $(document).on('click', '.btn-release', App.handleSell);
   },
 
 hookupMetamask: async function () {

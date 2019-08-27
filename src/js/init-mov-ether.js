@@ -77,7 +77,7 @@ App = {
 
         App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
-          return buyInstance.buyProduct(shopId, { from: account, value: etherValue });
+          return buyInstance.rentMovie(shopId, { from: account, value: etherValue });
         }).then(function (result) {
           return App.markSold();
         }).catch(function (err) {
@@ -121,7 +121,7 @@ App = {
         var account = accounts[0];
         App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
-          return buyInstance.sellProduct(shopId, { from: account });
+          return buyInstance.returnMovie(shopId, { from: account });
         }).then(function (result) {
           return App.markAvailable();
         }).catch(function (err) {

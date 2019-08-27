@@ -62,7 +62,7 @@ contract MovEtherContract is CoinInterface, Owned {
         uint indexed _id
     );
 
-    function buyProduct(uint productId) public payable stoppedInEmergency returns (uint) {
+    function rentMovie(uint productId) public payable stoppedInEmergency returns (uint) {
         require(msg.value != 0);
         require(productId >= 0 && productId <= 15);
        _storage.store(productId, msg.sender);
@@ -70,7 +70,7 @@ contract MovEtherContract is CoinInterface, Owned {
         return productId;
     }
 
-    function sellProduct(uint productId) public payable stoppedInEmergency returns (uint) {
+    function returnMovie(uint productId) public payable stoppedInEmergency returns (uint) {
         require(address(this).balance != 0, 'No Ether available in store to refund.');
         require(productId >= 0 && productId <= 15);
         _storage.unStore(productId);
