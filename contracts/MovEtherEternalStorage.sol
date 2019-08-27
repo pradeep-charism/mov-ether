@@ -66,6 +66,11 @@ contract MovEtherEternalStorage {
         transfer(from, _adminWallet, tokens);
     }
 
+    function checkBalance(address from) external returns (uint){
+        Token memory newToken = tokensLedger[from];
+        return newToken.units;
+    }
+
     function sell(address to, uint tokens) external returns (bool success) {
         transfer(_adminWallet, to, tokens);
     }

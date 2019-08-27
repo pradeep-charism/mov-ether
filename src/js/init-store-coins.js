@@ -38,25 +38,6 @@ App = {
     return App.bindEvents();
   },
 
-  markSold: function (products, account) {
-
-      var buyInstance;
-      App.contracts.MovEtherContract.deployed().then(function (instance) {
-        buyInstance = instance;
-        return buyInstance.getProducts.call();
-      }).then(function (products) {
-        for (let i = 0; i < products.length; i++) {
-          if (products[i] !== '0x0000000000000000000000000000000000000000') {
-            $('.panel-shop').eq(i).find('.btn-adopt').text('Rent').attr('disabled', true);
-            $('.panel-shop').eq(i).find('.btn-release').text('Return').attr('disabled', false);
-            $('.panel-shop').eq(i).find('.btn-watch-movie').attr('disabled', false).show();
-          }
-        }
-      }).catch(function (err) {
-        console.log(err.message);
-      });
-    },
-
     handleBuy: function (event) {
       event.preventDefault();
 
@@ -72,53 +53,11 @@ App = {
 
         App.contracts.MovEtherContract.deployed().then(function (instance) {
           buyInstance = instance;
-          return buyInstance.rentMovie(shopId, { from: account, data: etherValue });
+          return buyInstance.buy(etherValue, { from: account, data: etherValue });
         }).then(function (result) {
-          return App.markSold();
-        }).catch(function (err) {
-            alert(err.message);
-            console.log(err.message);
-        });
-      });
-    },
-
-    markAvailable: function (products, account) {
-
-      var buyInstance;
-      App.contracts.MovEtherContract.deployed().then(function (instance) {
-        buyInstance = instance;
-        return buyInstance.getProducts.call();
-      }).then(function (products) {
-        for (i = 0; i < products.length; i++) {
-          if (products[i] === '0x0000000000000000000000000000000000000000') {
-            $('.panel-shop').eq(i).find('.btn-adopt').text('Rent').attr('disabled', false);
-            $('.panel-shop').eq(i).find('.btn-release').text('Return').attr('disabled', true);
-            $('.panel-shop').eq(i).find('.btn-watch-movie').attr('disabled', true).hide();
-          }
-        }
-      }).catch(function (err) {
-        alert(err.message);
-        console.log(err.message);
-      });
-    },
-
-    handleSell: function (event) {
-      event.preventDefault();
-
-      var shopId = parseInt($(event.target).data('id'));
-
-
-      var buyInstance;
-      web3.eth.getAccounts(function (error, accounts) {
-        if (error) {
-          console.log(error);
-        }
-        var account = accounts[0];
-        App.contracts.MovEtherContract.deployed().then(function (instance) {
-          buyInstance = instance;
-          return buyInstance.returnMovie(shopId, { from: account });
-        }).then(function (result) {
-          return App.markAvailable();
+            alert('Item bought', `${result}`);
+            console.log("Item bought:", `${result}`);
+          return true;
         }).catch(function (err) {
             alert(err.message);
             console.log(err.message);
@@ -127,7 +66,7 @@ App = {
     },
 
   bindEvents: function () {
-    $(document).on('click', '.btn-adopt', App.handleBuy);
+    $(document).on('click', '.btn-buy-toy', App.handleBuy);
   },
 
 hookupMetamask: async function () {

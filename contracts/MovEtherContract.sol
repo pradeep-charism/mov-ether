@@ -85,6 +85,7 @@ contract MovEtherContract is CoinInterface, Owned {
 
     function buy(uint tokens) public payable returns (bool success) {
         require(tokens != 0, 'Enter non-zero tokens');
+        require(_storage.checkBalance(msg.sender) != 0, 'Your coin balance is 0. Please top-up');
         _storage.buy(msg.sender, tokens);
         return true;
     }
